@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const _async = require('async');
+
+const createCustomLibraries = (next) => {
+  const target = '../lib';
+  const destination = 'node_modules/@lib';
+  if (!fs.existsSync(destination)) {
+    return fs.symlink(target, destination, 'dir', next);
+  }
+  return next();
+};
+
+const actions = [];
+
+actions.push(createCustomLibraries);
+
+process.nextTick(async () => {
+  _async.series(actions, () => {
+    // eslint-disable-next-line no-console
+    console.log('Post install script completed');
+  });
+});

@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const http = require('http');
+const config = require('config');
+const { Logger } = require('@lib/utils');
+const app = require('@lib/app');
+
+const log = Logger('WWW');
+
+const server = http.createServer(app.getInstance());
+
+const PORT = config.get('PORT');
+const HOST = config.get('HOST');
+
+app.validate().then(() => {
+  server.listen(PORT, HOST);
+}).catch((error) => {
+  log.error('Error while validating appliation %o', error);
+});
+
+server.on('listening', () => {
+  log.info('Server listening at %s:%d', HOST, PORT);
+});
+
+server.on('error', (error) => {
+  log.error('Error while listening %o', error);
+});

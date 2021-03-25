@@ -1,0 +1,46 @@
+{
+  "name": "cue",
+  "version": "1.0.0",
+  "description": "A task and notes app",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha",
+    "postinstall": "node ./bin/postinstall",
+    "start": "node bin/www",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://rrkjonnpalli@github.com/rrkjonnapalli/cue.git"
+  },
+  "keywords": [
+    "tasks",
+    "notes",
+    "plan"
+  ],
+  "author": "rrkjonnapalli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rrkjonnapalli/cue/issues"
+  },
+  "homepage": "https://github.com/rrkjonnapalli/cue#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.3.2",
+    "pino-pretty": "^4.7.1"
+  },
+  "dependencies": {
+    "ajv": "^7.2.3",
+    "async": "^3.2.0",
+    "commander": "^7.2.0",
+    "config": "^3.3.6",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pino": "^6.11.2",
+    "sequelize": "^6.6.2",
+    "sqlite3": "^5.0.2"
+  }
+}
