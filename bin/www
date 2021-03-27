@@ -12,11 +12,13 @@ const server = http.createServer(app.getInstance());
 const PORT = config.get('PORT');
 const HOST = config.get('HOST');
 
-app.validate().then(() => {
-  server.listen(PORT, HOST);
-}).catch((error) => {
-  log.error('Error while validating appliation %o', error);
-});
+app.validate()
+  .then(() => app.initializeConnectors())
+  .then(() => app.init())
+  .then(() => server.listen(PORT, HOST))
+  .catch((error) => {
+    log.error('Error while initialization appliation %o', error);
+  });
 
 server.on('listening', () => {
   log.info('Server listening at %s:%d', HOST, PORT);
